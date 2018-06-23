@@ -1,0 +1,221 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "world cup matches",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "matchTodayorNot",
+                    "slots": [
+                        {
+                            "name": "team",
+                            "type": "WORLD_CUP_TEAMS"
+                        }
+                    ],
+                    "samples": [
+                        "{team} is competing in a game today",
+                        "{team} is playing in a game today",
+                        "  {team} has a game today",
+                        "  {team}  is playing in a match today",
+                        "  {team} is competing in a match today",
+                        "  {team} has a match today"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "WORLD_CUP_TEAMS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Tunisia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Uruguay"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Switzerland"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sweden"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Spain"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Serbia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Senegal"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Saudi Arabia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Russia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Poland"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Peru"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Panama"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Nigeria"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Morocco"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mexico"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Japan"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Iran"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Iceland"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Germany"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "France"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "England",
+                                "synonyms": [
+                                    "The United Kingdom",
+                                    "UK",
+                                    "the UK",
+                                    "Britain",
+                                    "Great Britain",
+                                    "United Kingdom"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Egypt"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Denmark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Croatia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Costa Rica"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Colombia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Brazil"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Australia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Korea Republic",
+                                "synonyms": [
+                                    "South Korea",
+                                    "Korea"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Argentina"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Belgium"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Portugal"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
