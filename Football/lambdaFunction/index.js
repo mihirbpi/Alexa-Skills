@@ -1,4 +1,4 @@
-var https = require('https')
+var https = require('https');
 
 exports.handler = (event, context) => {
 
@@ -6,19 +6,19 @@ exports.handler = (event, context) => {
 
     if (event.session.new) {
       // New Session
-      console.log("NEW SESSION")
+      console.log("NEW SESSION");
     }
 
     switch (event.request.type) {
 
       case "LaunchRequest":
         // Launch Request
-        console.log(`LAUNCH REQUEST`)
+        console.log(`LAUNCH REQUEST`);
         break;
 
       case "IntentRequest":
         // Intent Request
-        console.log(`INTENT REQUEST`)
+        console.log(`INTENT REQUEST`);
 
         switch(event.request.intent.name) {
           case "getMatchesToday":
@@ -26,14 +26,18 @@ exports.handler = (event, context) => {
               var dd = today.getDate().toString();
               var mm = (today.getMonth()+1).toString();
               var yy = today.getFullYear().toString();
-               var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; // ENDPOINT GOES HERE
-                var body = ""
+              var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; 
+              var body = "";
 
-               https.get(endpoint, (response) => {
-                    response.on('data', (chunk) => { body += chunk })
+              https.get(endpoint, (response) => {
+
+                    response.on('data', (chunk) => { 
+                      body += chunk; 
+                    })
+
                     response.on('end', () => {
-                       data = JSON.parse(body)
-                       context.succeed( generateResponse( buildSpeechletResponse(getTodayMatchesFromAPI(data), true),{}) )
+                       data = JSON.parse(body);
+                       context.succeed( generateResponse( buildSpeechletResponse(getTodayMatchesFromAPI(data), true),{}) );
                        
               })
             })
@@ -43,14 +47,18 @@ exports.handler = (event, context) => {
               var dd = (today.getDate()+1).toString();
               var mm = (today.getMonth()+1).toString();
               var yy = today.getFullYear().toString();
-               var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; // ENDPOINT GOES HERE
-                var body = ""
+              var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; 
+              var body = "";
 
-               https.get(endpoint, (response) => {
-                    response.on('data', (chunk) => { body += chunk })
+              https.get(endpoint, (response) => {
+
+                    response.on('data', (chunk) => { 
+                      body += chunk; 
+                    })
+
                     response.on('end', () => {
-                       data = JSON.parse(body)
-                       context.succeed( generateResponse( buildSpeechletResponse(getTomorrowMatchesFromAPI(data), true),{}) )
+                       data = JSON.parse(body);
+                       context.succeed( generateResponse( buildSpeechletResponse(getTomorrowMatchesFromAPI(data), true),{}) );
                        
               })
             })
@@ -58,6 +66,7 @@ exports.handler = (event, context) => {
 
 
           default:
+            context.succeed( generateResponse( buildSpeechletResponse("Prakash please stop asking me silly questions", true),{}) );
             throw "Invalid intent"
         }
 
@@ -65,15 +74,15 @@ exports.handler = (event, context) => {
 
       case "SessionEndedRequest":
         // Session Ended Request
-        console.log(`SESSION ENDED REQUEST`)
+        console.log(`SESSION ENDED REQUEST`);
         break;
 
       default:
-        context.fail(`INVALID REQUEST TYPE: ${event.request.type}`)
+        context.fail( `INVALID REQUEST TYPE: ${event.request.type}` );
 
     }
 
-  } catch(error) { context.fail(`Exception: ${error}`) }
+  } catch(error) { context.fail(`Exception: ${error}`); }
 
 }
 
@@ -86,7 +95,7 @@ buildSpeechletResponse = (outputText, shouldEndSession) => {
       text: outputText
     },
     shouldEndSession: shouldEndSession
-  }
+  };
 
 }
 
@@ -96,7 +105,7 @@ generateResponse = (speechletResponse, sessionAttributes) => {
     version: "1.0",
     sessionAttributes: sessionAttributes,
     response: speechletResponse
-  }
+  };
 
 }
 
