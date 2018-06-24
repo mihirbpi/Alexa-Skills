@@ -22,45 +22,38 @@ exports.handler = (event, context) => {
 
         switch(event.request.intent.name) {
           case "getMatchesToday":
-            /*var endpoint = "https://worldcup.sfg.io/matches/today" // ENDPOINT GOES HERE
-            var body = ""
+              var today = new Date();
+              var dd = today.getDate().toString();
+              var mm = (today.getMonth()+1).toString();
+              var yy = today.getFullYear().toString();
+               var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; // ENDPOINT GOES HERE
+                var body = ""
 
-            https.get(endpoint, (response) => {
-              response.on('data', (chunk) => { body += chunk })
-              response.on('end', () => {
-                var data = JSON.parse(body)
-                var there = 'No';
-                 for(var i=0; i<data.length; i++){
-                    if(data[i].home_team_country==team || data[i].away_team_country==team){
-                        there = 'Yes';
-                      }
-                    }
-
-                 context.succeed( generateResponse( buildSpeechletResponse(there, true),{}) )
+               https.get(endpoint, (response) => {
+                    response.on('data', (chunk) => { body += chunk })
+                    response.on('end', () => {
+                       data = JSON.parse(body)
+                       context.succeed( generateResponse( buildSpeechletResponse(getTodayMatchesFromAPI(data), true),{}) )
+                       
               })
-            })*/
-            context.succeed( generateResponse( buildSpeechletResponse("Today's matches are, England v Panama at 5 AM, Japan v Senegal at 8 AM, and Poland v Columbia at 11 AM", true),{}) )
+            })
             break;
           case "getMatchesTomorrow":
-            /*
-            var endpoint = "https://worldcup.sfg.io/matches/tomorrow" // ENDPOINT GOES HERE
-            var body = ""
+              var today = new Date();
+              var dd = (today.getDate()+1).toString();
+              var mm = (today.getMonth()+1).toString();
+              var yy = today.getFullYear().toString();
+               var endpoint = "https://worldcup.sfg.io/matches?start_date="+yy+"-"+mm+"-"+dd+"&end_date="+yy+"-"+mm+"-"+dd; // ENDPOINT GOES HERE
+                var body = ""
 
-            https.get(endpoint, (response) => {
-              response.on('data', (chunk) => { body += chunk })
-              response.on('end', () => {
-                var data = JSON.parse(body)
-                var there = 'No';
-                 for(var i=0; i<data.length; i++){
-                    if(data[i].home_team_country==team || data[i].away_team_country==team){
-                        there = 'Yes';
-                      }
-                    }
-
-                 context.succeed( generateResponse( buildSpeechletResponse(there, true),{}) )
+               https.get(endpoint, (response) => {
+                    response.on('data', (chunk) => { body += chunk })
+                    response.on('end', () => {
+                       data = JSON.parse(body)
+                       context.succeed( generateResponse( buildSpeechletResponse(getTomorrowMatchesFromAPI(data), true),{}) )
+                       
               })
-            })*/
-            context.succeed( generateResponse( buildSpeechletResponse("Tomorrow's matches are, Saudi Arabia v Egypt at 7 AM, Uruguay v Russia at 7 AM, Iran v Portugal at 11 AM, and Spain v Morocco at 11 AM", true),{}) )
+            })
             break;
 
 
@@ -106,3 +99,45 @@ generateResponse = (speechletResponse, sessionAttributes) => {
   }
 
 }
+
+function getTodayMatchesFromAPI(data){
+
+  var versus = [];
+  var result  = "Today's matches are, ";
+
+   for(var i=0; i<data.length; i++){
+    versus.push([data[i].away_team_country, data[i].home_team_country, 
+          (Number(data[i].datetime.split('T')[1].split(':00Z')[0].split(":")[0])-7).toString()+" AM"]);
+   }
+   console.log(versus);
+   for(var i=0; i<versus.length-1; i++){
+    result+=versus[i][0]+" v "+versus[i][1]+" at "+versus[i][2]+", ";
+   }
+   result+="and "+versus[versus.length-1][0]+" v "+versus[versus.length-1][1]+" at "+versus[versus.length-1][2];
+
+   return result;        
+}
+
+
+function getTomorrowMatchesFromAPI(data){
+
+  var versus = [];
+  var result  = "Tomorrow's matches are, ";
+
+
+   for(var i=0; i<data.length; i++){
+    versus.push([data[i].away_team_country, data[i].home_team_country, 
+          (Number(data[i].datetime.split('T')[1].split(':00Z')[0].split(":")[0])-7).toString()+" AM"]);
+   }
+   console.log(versus);
+   for(var i=0; i<versus.length-1; i++){
+    result+=versus[i][0]+" v "+versus[i][1]+" at "+versus[i][2]+", ";
+   }
+   result+="and "+versus[versus.length-1][0]+" v "+versus[versus.length-1][1]+" at "+versus[versus.length-1][2];
+
+   return result; 
+}
+
+
+
+
