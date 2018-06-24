@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "soccer",
+            "invocationName": "football",
             "intents": [
                 {
                     "name": "AMAZON.FallbackIntent",
@@ -20,20 +20,23 @@
                     "samples": []
                 },
                 {
-                    "name": "matchTodayorNot",
-                    "slots": [
-                        {
-                            "name": "team",
-                            "type": "WORLD_CUP_TEAMS"
-                        }
-                    ],
+                    "name": "getMatchesToday",
+                    "slots": [],
                     "samples": [
-                        "{team} is competing in a game today",
-                        "{team} is playing in a game today",
-                        "  {team} has a game today",
-                        "  {team}  is playing in a match today",
-                        "  {team} is competing in a match today",
-                        "  {team} has a match today"
+                        "for matches today",
+                        "for today's matches",
+                        "get today's matches",
+                        "get matches today"
+                    ]
+                },
+                {
+                    "name": "getMatchesTomorrow",
+                    "slots": [],
+                    "samples": [
+                        "for matches tomorrow",
+                        "for tomorrow's matches",
+                        "get tomorrow's matches",
+                        "get matches tomorrow"
                     ]
                 }
             ],
