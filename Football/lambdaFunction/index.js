@@ -14,7 +14,6 @@ exports.handler = (event, context) => {
       case "LaunchRequest":
         // Launch Request
         console.log(`LAUNCH REQUEST`)
-        context.succeed( generateResponse( buildSpeechletResponse("This is Mihir's world cup matches skill", true),{}) )
         break;
 
       case "IntentRequest":
@@ -22,9 +21,8 @@ exports.handler = (event, context) => {
         console.log(`INTENT REQUEST`)
 
         switch(event.request.intent.name) {
-          case "matchTodayorNot":
-            var team = event.request.intent.slots.team.resolutions.resolutionsPerAuthority[0].values[0].value.name
-            var endpoint = "https://worldcup.sfg.io/matches/today" // ENDPOINT GOES HERE
+          case "getMatchesToday":
+            /*var endpoint = "https://worldcup.sfg.io/matches/today" // ENDPOINT GOES HERE
             var body = ""
 
             https.get(endpoint, (response) => {
@@ -40,7 +38,29 @@ exports.handler = (event, context) => {
 
                  context.succeed( generateResponse( buildSpeechletResponse(there, true),{}) )
               })
-            })
+            })*/
+            context.succeed( generateResponse( buildSpeechletResponse("Today's matches are, England v Panama at 5 AM, Japan v Senegal at 8 AM, and Poland v Columbia at 11 AM", true),{}) )
+            break;
+          case "getMatchesTomorrow":
+            /*
+            var endpoint = "https://worldcup.sfg.io/matches/tomorrow" // ENDPOINT GOES HERE
+            var body = ""
+
+            https.get(endpoint, (response) => {
+              response.on('data', (chunk) => { body += chunk })
+              response.on('end', () => {
+                var data = JSON.parse(body)
+                var there = 'No';
+                 for(var i=0; i<data.length; i++){
+                    if(data[i].home_team_country==team || data[i].away_team_country==team){
+                        there = 'Yes';
+                      }
+                    }
+
+                 context.succeed( generateResponse( buildSpeechletResponse(there, true),{}) )
+              })
+            })*/
+            context.succeed( generateResponse( buildSpeechletResponse("Tomorrow's matches are, Saudi Arabia v Egypt at 7 AM, Uruguay v Russia at 7 AM, Iran v Portugal at 11 AM, and Spain v Morocco at 11 AM", true),{}) )
             break;
 
 
