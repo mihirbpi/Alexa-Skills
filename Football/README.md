@@ -1,4 +1,4 @@
-#Football
+# Football
 
 ## What it does
 - Tells you today's or tomorrow's World Cup matches
@@ -8,6 +8,10 @@
 - `Alexa, ask football for matches today`
 - `Alexa, ask football for tomorrow's matches`
 - `Alexa, ask football for matches tomorrow`
+- `Alexa, ask football to get today's matches`
+- `Alexa, ask football to get matches today`
+- `Alexa, ask football to get tomorrow's matches`
+- `Alexa, ask football to get matches tomorrow`
 
 ## Responses
  - `Today's matches are, [list of matches]`
