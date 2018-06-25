@@ -38,6 +38,16 @@
                         "get tomorrow's matches",
                         "get matches tomorrow"
                     ]
+                },
+                {
+                    "name": "getMatchesYesterday",
+                    "slots": [],
+                    "samples": [
+                        "for matches yesterday",
+                        "for yesterday's matches",
+                        "get yesterday's matches",
+                        "get matches yesterday"
+                    ]
                 }
             ],
             "types": [
