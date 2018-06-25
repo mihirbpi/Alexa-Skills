@@ -23,6 +23,7 @@ exports.handler = (event, context) => {
         switch(event.request.intent.name) {
           case "getMatchesYesterday":
               var yesterday = new Date();
+              yesterday = yesterday.subtractHours(7);
               var dd = (yesterday.getDate()-1).toString();
               var mm = (yesterday.getMonth()+1).toString();
               var yyyy = yesterday.getFullYear().toString();
@@ -44,6 +45,7 @@ exports.handler = (event, context) => {
             break;
           case "getMatchesToday":
               var today = new Date();
+              today = today.subtractHours(7);
               var dd = today.getDate().toString();
               var mm = (today.getMonth()+1).toString();
               var yyyy = today.getFullYear().toString();
@@ -65,6 +67,7 @@ exports.handler = (event, context) => {
             break;
           case "getMatchesTomorrow":
               var tomorrow = new Date();
+              tomorrow = tomorrow.subtractHours(7);
               var dd = (tomorrow.getDate()+1).toString();
               var mm = (tomorrow.getMonth()+1).toString();
               var yyyy = tomorrow.getFullYear().toString();
@@ -139,7 +142,7 @@ function getYesterdayMatchesFromAPI(data){
     matchData.push([data[i].away_team_country, data[i].home_team_country, 
           (Number(data[i].datetime.split('T')[1].split(':00Z')[0].split(":")[0])-7).toString()+" AM"]);
    }
-   console.log(matchData);
+ 
    for(var i=0; i<matchData.length-1; i++){
     result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
@@ -157,7 +160,7 @@ function getTodayMatchesFromAPI(data){
     matchData.push([data[i].away_team_country, data[i].home_team_country, 
           (Number(data[i].datetime.split('T')[1].split(':00Z')[0].split(":")[0])-7).toString()+" AM"]);
    }
-   console.log(matchData);
+  
    for(var i=0; i<matchData.length-1; i++){
     result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
@@ -177,13 +180,18 @@ function getTomorrowMatchesFromAPI(data){
     matchData.push([data[i].away_team_country, data[i].home_team_country, 
           (Number(data[i].datetime.split('T')[1].split(':00Z')[0].split(":")[0])-7).toString()+" AM"]);
    }
-   console.log(matchData);
+   
    for(var i=0; i<matchData.length-1; i++){
     result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
    result+="and "+matchData[matchData.length-1][0]+" v "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
 
    return result; 
+}
+
+Date.prototype.subtractHours = function(h) {    
+   this.setTime(this.getTime() - (h*60*60*1000)); 
+   return this;   
 }
 
 
