@@ -144,9 +144,9 @@ function getYesterdayMatchesFromAPI(data){
    }
  
    for(var i=0; i<matchData.length-1; i++){
-    result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
+    result+=matchData[i][0]+" versus "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
-   result+="and "+matchData[matchData.length-1][0]+" v "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
+   result+="and "+matchData[matchData.length-1][0]+" versus "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
 
    return result;        
 }
@@ -162,9 +162,9 @@ function getTodayMatchesFromAPI(data){
    }
   
    for(var i=0; i<matchData.length-1; i++){
-    result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
+    result+=matchData[i][0]+" versus "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
-   result+="and "+matchData[matchData.length-1][0]+" v "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
+   result+="and "+matchData[matchData.length-1][0]+" versus "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
 
    return result;        
 }
@@ -182,9 +182,9 @@ function getTomorrowMatchesFromAPI(data){
    }
    
    for(var i=0; i<matchData.length-1; i++){
-    result+=matchData[i][0]+" v "+matchData[i][1]+" at "+matchData[i][2]+", ";
+    result+=matchData[i][0]+" versus "+matchData[i][1]+" at "+matchData[i][2]+", ";
    }
-   result+="and "+matchData[matchData.length-1][0]+" v "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
+   result+="and "+matchData[matchData.length-1][0]+" versus "+matchData[matchData.length-1][1]+" at "+matchData[matchData.length-1][2];
 
    return result; 
 }
